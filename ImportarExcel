@@ -1,0 +1,12 @@
+<?php
+				if(isset($_POST['radio'])){
+					//subir la imagen del articulo
+					$nameEXCEL = $_FILES['archivo']['name'];
+					$tmpEXCEL = $_FILES['archivo']['tmp_name'];
+					$extEXCEL = pathinfo($nameEXCEL);
+					$urlnueva = "xls/ARCHIVO.xls";			
+					if(is_uploaded_file($tmpEXCEL)){
+						copy($tmpEXCEL,$urlnueva);
+					}					
+				}
+?>
