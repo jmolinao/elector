@@ -1,0 +1,44 @@
+<?php
+define('INCLUDE_CHECK',true);
+require ''; //inclusión de funciones necesarias como la conexion a la BD
+
+
+//Registros por pagina a mostrar
+$RegistrosAMostrar=10;
+
+
+
+
+//estos valores los recibo por GET
+if(isset($_REQUEST['pag'])){
+	$RegistrosAEmpezar=($_REQUEST['pag']-1)*$RegistrosAMostrar;
+	$PagAct=$_REQUEST['pag'];
+//caso contrario los iniciamos
+}else{
+	$RegistrosAEmpezar=0;
+	$PagAct=1;
+}
+
+$Resultado=mysql_query("SELECT * FROM tabla  WHERE ".$_REQUEST['criterio']." like '".$_REQUEST['busca']."%' ORDER BY campoID LIMIT $RegistrosAEmpezar, $RegistrosAMostrar") or die("Error en: $busqueda: " . mysql_error());
+
+echo "<center><table border='1' id='form' cellpadding='0' cellspacing='0' frame='void' class='form'>";
+	echo "<tr>";
+		echo "<td style='font-weight: bold;'><center>campoID</td>";		
+		echo "<td style='font-weight: bold;'><center>campo1</td>";	
+		echo "<td style='font-weight: bold;'><center>campo2</td>";
+		echo "<td style='font-weight: bold;'><center>campo3</td>";		
+	echo "</tr>";
+while($MostrarFila=mysql_fetch_array($Resultado)){
+	//$campoID = $MostrarFila['campoID'];
+?>
+	<tr>
+		<td><?php echo $MostrarFila['campoID'];?></td>
+		<td><?php echo $MostrarFila['campo1'];?></td>
+		<td><?php echo $MostrarFila['campo2'];?></td>
+		<td><?php echo $MostrarFila['campo3'];?></td>
+	</tr>
+<?php	
+}
+?>
+</table>
+</center>
