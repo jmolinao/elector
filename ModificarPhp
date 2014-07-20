@@ -1,0 +1,21 @@
+<?php
+define('INCLUDE_CHECK',true);
+	require ''; // conexion a la bd a través de una función tipo connect.php
+	
+	echo $_REQUEST['campo1'];
+	
+	/*verificamos si las variables se envian*/
+	if(empty($_REQUEST['campoID']) || empty($_REQUEST['campo1']) || empty($_REQUEST['campo2'])){
+		echo "Usted no a llenado todos los campos";
+		exit;
+	}
+	
+	/*modificar el registro*/
+
+	$sql = mysql_query("UPDATE tabla 
+						SET  campo1='".$_REQUEST['campo1']."', 
+						campo2='".$_REQUEST['campo2']."', 
+						campo3='".$_REQUEST['campo3']."' 
+						where campoID='".$_REQUEST['campoID']."'");
+	exit;
+?>
