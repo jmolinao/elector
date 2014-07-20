@@ -1,0 +1,18 @@
+function AjaxBuscarDinamico(url_enviada,id){
+	var criterio=document.getElementById('frm_criterio').value;//BAJO QUE CAMPO VOY A BUSCAR
+	var busca=document.getElementById('frm_valor_buscar').value;//QUE PALABRA QUIERO BUSCAR 
+	
+	var parametros={//CREO UN ARREGLO CON VARIABLES PARA ENVIAR DE FORMA MAS COMODA LOS DATOS
+			"busca":busca, "criterio":criterio
+		}
+	//EN EL ARCHIVO PHP QUE VOY A LLAMAR RECIVO LOS DATOS DE LA SIGUIENTE FORMA
+	//$_REQUEST['busca'],$_REQUEST['criterio']
+	$.ajax({
+		url:url_enviada,//A QUE VOY ARCHIVO VOY A LLAMAR?
+		type:'POST',//DE QUE FORMA ENVIO LOS DATOS?
+		data: parametros,//QUE DATOS VOY A ENVIAR?
+		success:function(datos){//QUE HAGO CUANDO TERMINE DE LLAMAR AL ARCHIVO?
+			$(id).html(datos);//SOBRE QUE DIV CARGO LOS RESULTADOS?
+		}
+	});						
+}
