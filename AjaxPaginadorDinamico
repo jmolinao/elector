@@ -6,7 +6,7 @@ function AjaxPaginadorDinamico(nropagina){
 			"busca":busca, "criterio":criterio
 		}
 	$.ajax({
-		url: "FuncionBuscador.php?pag="+nropagina,
+		url: "BuscadorPHP.php?pag="+nropagina,
 		type:'POST',
 		data: parametros,
 		beforeSend: function(){
